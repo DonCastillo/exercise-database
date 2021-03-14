@@ -1,6 +1,24 @@
+import { Grid, Paper } from "@material-ui/core"
 import React from "react"
 
+const styles = {
+    Paper: {
+        padding:20,
+        marginTop:10, 
+        marginBottom:10
+    }
+}
+
 export default props => 
-    <div>
-        Hello from exercises
-    </div>
+    <Grid container>
+        <Grid item sm>
+            <Paper style={styles.Paper}>
+                Left Pane
+            </Paper>
+        </Grid>
+        <Grid item sm>
+            <Paper style={styles.Paper}> 
+                Right Pane
+            </Paper>
+        </Grid>
+    </Grid>
