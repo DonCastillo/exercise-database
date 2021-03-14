@@ -11,6 +11,7 @@ function Footer({ muscles }) {
 				centered
 				muscles={muscles}
 			>
+				<Tab label="All" />
 				{muscles.map((group) => {
 					return <Tab label={group} />;
 				})}
