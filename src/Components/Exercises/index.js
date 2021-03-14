@@ -6,7 +6,7 @@ import {
 	Typography,
 	ListItemText,
 } from "@material-ui/core";
-import React from "react";
+import React, { Fragment } from "react";
 
 const styles = {
 	Paper: {
@@ -22,9 +22,9 @@ export default ({ exercises }) => (
 	<Grid container>
 		<Grid item sm>
 			<Paper style={styles.Paper}>
-				{exercises.map(([group, exercises]) => {
+				{exercises.map(([group, exercises], index) => {
 					return (
-						<>
+						<Fragment key={index}>
 							<Typography
 								variant="h6"
 								style={{ textTransform: "capitalize" }}
@@ -32,15 +32,15 @@ export default ({ exercises }) => (
 								{group}
 							</Typography>
 							<List component="ul">
-								{exercises.map(({title}) => {
+								{exercises.map(({title}, index) => {
 									return (
-										<ListItem button>
+										<ListItem button key={index}>
 											<ListItemText primary={title} />
 										</ListItem>
 									);
 								})}
 							</List>
-						</>
+						</Fragment>
 					);
 				})}
 			</Paper>
@@ -50,7 +50,7 @@ export default ({ exercises }) => (
                 <Typography variant="h3">
                     Welcome
                 </Typography>
-                <Typography variant="subtitle" style={{marginTop: 30}}>
+                <Typography variant="subtitle1" style={{marginTop: 30}}>
                     Please select an exercise from the list on the left.
                 </Typography>
             </Paper>
