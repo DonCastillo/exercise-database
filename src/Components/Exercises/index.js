@@ -22,7 +22,11 @@ export default ({
 	exercises,
 	category,
 	onSelect,
-	exercise: { id = 0, title = "Welcome!", description="Please select an exercise from the list on the left." },
+	exercise: {
+		id,
+		title = "Welcome!",
+		description = "Please select an exercise from the list on the left.",
+	},
 }) => (
 	<Grid container>
 		<Grid item sm>
@@ -39,11 +43,14 @@ export default ({
 							<List component="ul">
 								{exercises.map(({ id, title }, index) => {
 									return (
-										<ListItem button key={index}>
-											<ListItemText
-												primary={title}
-												onClick={() => onSelect(id)}
-											/>
+										<ListItem
+											button
+											key={index}
+											onClick={() => {
+												onSelect(id);
+											}}
+										>
+											<ListItemText primary={title} />
 										</ListItem>
 									);
 								})}
@@ -55,9 +62,7 @@ export default ({
 		</Grid>
 		<Grid item sm>
 			<Paper style={styles.Paper}>
-				<Typography variant="h3">
-					{title}
-				</Typography>
+				<Typography variant="h3">{title}</Typography>
 				<Typography variant="subtitle1" style={{ marginTop: 30 }}>
 					{description}
 				</Typography>
