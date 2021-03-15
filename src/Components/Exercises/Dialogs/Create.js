@@ -7,6 +7,12 @@ import {
 	Button,
 	DialogActions,
 	TextField,
+	FormControl,
+	FormHelperText,
+	FormLabel,
+	InputLabel,
+	Select,
+	MenuItem,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -68,8 +74,19 @@ export default class extends Component {
 								onChange={this.handleChange("title")}
 								margin="normal"
 							/>
-                            <br/>
-                            <TextField
+							<br />
+							<FormControl>
+								<InputLabel htmlFor="muscles">Muscles</InputLabel>
+								<Select value={muscles} onChange={this.handleChange("muscles")}>
+									<MenuItem value="">
+										<em>None</em>
+									</MenuItem>
+								</Select>
+							</FormControl>
+							<br />
+							<TextField
+								multiline
+								rows="4"
 								label="Description"
 								value={description}
 								onChange={this.handleChange("description")}
