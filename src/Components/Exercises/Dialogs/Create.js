@@ -6,6 +6,7 @@ import {
 	DialogContentText,
 	Button,
 	DialogActions,
+	TextField,
 } from "@material-ui/core";
 import AddIcon from "@material-ui/icons/Add";
 
@@ -14,19 +15,34 @@ export default class extends Component {
 		super(props);
 		this.state = {
 			open: false,
+			exercise: {
+				title: "",
+				description: "",
+				muscles: "",
+			},
 		};
 	}
 
+	handleToggle = () => {
+		this.setState((state) => ({
+			open: !state.open,
+		}));
+	};
 
-
-    handleToggle = () => {
-        this.setState(state => ({
-            open: !state.open
-        }))
-    }
+	handleChange = (name) => ({ target: { value } }) => {
+		this.setState({
+			exercise: {
+				...this.state.exercise,
+				[name]: value,
+			},
+		});
+	};
 
 	render() {
-        const {open} = this.state;
+		const {
+			open,
+			exercise: { title, description, muscles },
+		} = this.state;
 		return (
 			<Fragment>
 				<Button variant="contained" onClick={this.handleToggle}>
@@ -43,9 +59,23 @@ export default class extends Component {
 					</DialogTitle>
 					<DialogContent>
 						<DialogContentText id="alert-dialog-description">
-							Content
+							Please fill out the form below.
 						</DialogContentText>
-						<form></form>
+						<form>
+							<TextField
+								label="Title"
+								value={title}
+								onChange={this.handleChange("title")}
+								margin="normal"
+							/>
+                            <br/>
+                            <TextField
+								label="Description"
+								value={description}
+								onChange={this.handleChange("description")}
+								margin="normal"
+							/>
+						</form>
 					</DialogContent>
 					<DialogActions>
 						<Button color="primary" variant="contained">
